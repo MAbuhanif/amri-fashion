@@ -41,23 +41,15 @@
                 <a class="btn btn-light btn-sm" href="#">Login</a>
                 <a class="btn btn-outline-light btn-sm" href="#">Register</a>
         </div>
-    {% block page_header %}
-    {% endblock %}
+    </nav>
+    {% if messages %}
+        <div class="message-container"></div>
+    {% endif %}
 
     {% block content %}
     {% endblock %}
     
     {% block postloadjs %}
     {% endblock %}
-    
-    </nav>
-
-    <div class="container mt-4">
-        <div class="alert alert-info">xyz</div>
-    </div>
-
-    <footer class="bg-dark text-white text-center p-3 mt-5">
-        <p>&copy; 2025 Amri-Fashion</p>
-    </footer>
 </body>
 </html>
