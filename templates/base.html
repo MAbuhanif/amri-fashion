@@ -33,15 +33,40 @@
     
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-        <a class="navbar-brand" href="#">Amri-Fashion</a>
-        <div class="ms-auto"> 
-                <a class="btn btn-light btn-sm" href="#">Profile</a>
-                <a class="btn btn-outline-light btn-sm" href="#">Logout</a>
-                <a class="btn btn-light btn-sm" href="#">Login</a>
-                <a class="btn btn-outline-light btn-sm" href="#">Register</a>
+    <header class="container-fluid bg-light shadow-sm fixed-top py-2">
+        <div class="row align-items-center">
+            <!-- Logo Section -->
+            <div class="col-12 col-lg-4 text-center text-lg-start">
+                <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                    <h2 class="logo-font text-dark my-0"><strong>Amri </strong>Fashion</h2>
+                </a>
+            </div>
+
+            <!-- Search Bar Section -->
+            <div class="col-12 col-lg-4 my-2 my-lg-0">
+                <form method="GET" action="">
+                    <div class="input-group">
+                        <input class="form-control border rounded-0" type="text" name="q" placeholder="Search our site">
+                        <button class="btn btn-dark rounded-0" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Navigation/Links Section -->
+            <div class="col-12 col-lg-4 text-center text-lg-end">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-outline-dark btn-sm">Login</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-dark btn-sm">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </nav>
+    </header>
     {% if messages %}
         <div class="message-container"></div>
     {% endif %}
