@@ -1,0 +1,1 @@
+web: gunicorn amri_fashion.wsgi
