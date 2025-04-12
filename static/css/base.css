@@ -1,3 +1,4 @@
+/* General Styles */
 html {
     height: 100%;
 }
@@ -7,5 +8,124 @@ body {
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
-    font-family: 'Lato';
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Icon Styling */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+/* Typography */
+.logo-font {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+/* Buttons */
+.shop-now-button,
+.btn-black {
+    background: black;
+    color: white;
+    min-width: 260px;
+    border: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+.bg-black {
+    background: #000 !important;
+}
+
+/* Links */
+.main-logo-link {
+    width: fit-content;
+    text-decoration: none;
+}
+
+/* Overlay */
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    z-index: -1;
+}
+
+/* Header */
+.header-container {
+    padding-top: 164px;
+    text-align: center;
+}
+
+.header-container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.header-container p {
+    font-size: 1rem;
+    color: #777;
+}
+
+/* Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+/* Fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    .header-container h1 {
+        font-size: 2rem;
+    }
+
+    .header-container p {
+        font-size: 0.9rem;
+    }
+
+    .shop-now-button {
+        min-width: 200px;
+    }
 }

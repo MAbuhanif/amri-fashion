@@ -113,10 +113,13 @@
                         {% include 'includes/main-nav.html' %}
                     </div>
                 </nav>
+               
             </div>
+            
         </div>
         
     </header>
+
 
     <!-- Messages Section -->
     {% if messages %}
@@ -129,6 +132,10 @@
             {% endfor %}
         </div>
     {% endif %}
+
+     <!-- Page Header Section -->
+     {% block page_header %}
+     {% endblock %}
 
     <!-- Main Content Section -->
     <main class="container mt-5 pt-5">
