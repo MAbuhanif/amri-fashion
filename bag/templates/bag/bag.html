@@ -1,16 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-    <div class="container-fluid bg-light py-5 text-center">
-        <h1 class="display-4 logo-font">Shopping Bag</h1>
-        <p class="text-muted">Review your selected items before checkout</p>
-    </div>
-{% endblock %}
-
 {% block content %}
     <div class="overlay"></div>
     <div class="container my-5">
+        <div class="row mb-4">
+            <div class="col text-center">
+                <h3 class="fw-bold">Shopping Bag</h3>
+                <p class="lead">Review your items before proceeding to checkout.</p>
+            </div>
         <div class="row">
             <div class="col">
                 {% if bag_items %}

@@ -78,23 +78,6 @@ body {
     z-index: -1;
 }
 
-/* Header */
-.header-container {
-    padding-top: 164px;
-    text-align: center;
-}
-
-.header-container h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.header-container p {
-    font-size: 1rem;
-    color: #777;
-}
-
 /* Media Queries */
 
 /* Slightly larger container on xl screens */
