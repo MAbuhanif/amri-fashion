@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
-from products.models import Product
+from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.contrib import messages
 
 
 # Create your views here.
@@ -12,7 +12,7 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     """ Add a quantity of the specified product to the shopping bag """
     try:
-        quantity = int(request.POST.get('quantity', 1))  # Default to 1 if quantity is not provided
+        quantity = int(request.POST.get('quantity', 1))
         redirect_url = request.POST.get('redirect_url', '/')
         size = request.POST.get('product_size', None)
         bag = request.session.get('bag', {})
@@ -32,16 +32,18 @@ def add_to_bag(request, item_id):
                 bag[item_id] = quantity
 
         request.session['bag'] = bag
+        messages.success(request, "Item successfully added to your bag!")
         return redirect(redirect_url)
 
     except ValueError:
-        return HttpResponse("Invalid quantity", status=400)
+        messages.error(request, "Invalid quantity provided.")
+        return redirect(redirect_url)
 
 
 def adjust_bag(request, item_id):
     """ Adjust the quantity of the specified product to the specified amount """
     try:
-        quantity = int(request.POST.get('quantity', 0))  # Default to 0 if quantity is not provided
+        quantity = int(request.POST.get('quantity', 0))
         size = request.POST.get('product_size', None)
         bag = request.session.get('bag', {})
 
@@ -59,12 +61,15 @@ def adjust_bag(request, item_id):
                 bag.pop(item_id)
 
         request.session['bag'] = bag
+        messages.success(request, "Bag updated successfully!")
         return redirect(reverse('view_bag'))
 
     except ValueError:
-        return HttpResponse("Invalid quantity", status=400)
+        messages.error(request, "Invalid quantity provided.")
+        return redirect(reverse('view_bag'))
     except KeyError:
-        return HttpResponse("Item not found in bag", status=404)
+        messages.error(request, "Item not found in your bag.")
+        return redirect(reverse('view_bag'))
 
 
 def remove_from_bag(request, item_id):
@@ -81,9 +86,17 @@ def remove_from_bag(request, item_id):
             bag.pop(item_id)
 
         request.session['bag'] = bag
-        return redirect('view_bag')  
+        messages.success(request, "Item removed from your bag.")
+        return redirect('view_bag')
 
     except KeyError:
-        return redirect('view_bag')  
-    except Exception as e:
-        return HttpResponse(f"An error occurred: {e}", status=500)
+        messages.error(request, "Item not found in your bag.")
+        return redirect('view_bag')
+
+
+def example_view(request):
+    messages.success(request, "This is a success message!")
+    messages.error(request, "This is an error message!")
+    messages.warning(request, "This is a warning message!")
+    messages.info(request, "This is an info message!")
+    return redirect('home')
