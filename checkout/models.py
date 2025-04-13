@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 from django.db.models import Sum
 from django.conf import settings
 import uuid
@@ -73,7 +75,23 @@ class OrderLineItem(models.Model):
         """
         self.lineitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
-        self.order.update_total()
 
     def __str__(self):
         return f'SKU {self.product.sku} on order {self.order.order_number}'
+
+
+# Signals to update the order total when line items are added, updated, or deleted
+@receiver(post_save, sender=OrderLineItem)
+def update_order_total_on_save(sender, instance, **kwargs):
+    """
+    Update the order total when a line item is created or updated.
+    """
+    instance.order.update_total()
+
+
+@receiver(post_delete, sender=OrderLineItem)
+def update_order_total_on_delete(sender, instance, **kwargs):
+    """
+    Update the order total when a line item is deleted.
+    """
+    instance.order.update_total()
