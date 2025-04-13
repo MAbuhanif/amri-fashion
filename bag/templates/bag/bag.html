@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 
+
 {% block content %}
     <div class="overlay"></div>
     <div class="container my-5">
         <div class="row mb-4">
-            <div class="col text-center">
-                <h3 class="fw-bold">Shopping Bag</h3>
-                <p class="lead">Review your items before proceeding to checkout.</p>
+            <div class="col-12 text-center">
+                <h3 class="display logo-font">Your Bag</h3>
+                <p class="lead text-muted">Check your items before proceeding to checkout</p>
+                <hr>
             </div>
+        </div>
         <div class="row">
             <div class="col">
                 {% if bag_items %}
@@ -20,7 +23,7 @@
                                     <th scope="col">Product</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
-                                    <th scope="col">Total</th>
+                                    <th scope="col">Sub Total</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
@@ -33,33 +36,54 @@
                                                 <span>{{ item.product.name }}</span>
                                             </div>
                                         </td>
-                                        <td>{{ item.quantity }}</td>
-                                        <td>${{ item.product.price }}</td>
-                                        <td>${{ item.total_price }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-outline-dark">Update</a>
-                                            <a href="#" class="btn btn-sm btn-outline-danger">Remove</a>
+                                            <form action="{% url 'update_bag' item.product.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99" class="form-control form-control-sm">
+                                                <button type="submit" class="btn btn-sm btn-outline-dark mt-2">Update</button>
+                                            </form>
+                                        </td>
+                                        <td>${{ item.product.price }}</td>
+                                        <td>${{ item.subtotal }}</td>
+                                        <td>
+                                            <a href="{% url 'remove_from_bag' item.product.id %}" class="btn btn-sm btn-outline-danger">Remove</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" class="pt-5 text-end">
+                                        <h6><strong>Bag Total: ${{ total|floatformat:2 }}</strong></h6>
+                                        <h6>Delivery: ${{ delivery|floatformat:2 }}</h6>
+                                        <h4 class="mt-4"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
+                                        {% if free_delivery_delta > 0 %}
+                                            <p class="mb-1 text-danger">
+                                                You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
+                                            </p>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="text-end">
+                                        <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-0 btn-lg">
+                                            <i class="fas fa-chevron-left"></i> Keep Shopping
+                                        </a>
+                                        <a href="#" class="btn btn-dark rounded-0 btn-lg">
+                                            <span class="text-uppercase">Secure Checkout</span>
+                                            <i class="fas fa-lock"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
-                    </div>
-
-                    <!-- Bag Summary -->
-                    <div class="mt-4 text-end">
-                        <h4 class="fw-bold">Subtotal: ${{ bag_total }}</h4>
-                        <a href="#" class="btn btn-dark btn-lg rounded-0 text-uppercase">Proceed to Checkout</a>
                     </div>
                 {% else %}
                     <!-- Empty Bag Message -->
                     <div class="text-center">
                         <p class="lead mb-5">Your bag is empty.</p>
                         <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-0 btn-lg">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="text-uppercase">Keep Shopping</span>
+                            <i class="fas fa-chevron-left"></i> Keep Shopping
                         </a>
                     </div>
                 {% endif %}
