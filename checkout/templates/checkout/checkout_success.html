@@ -1,38 +1,183 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container">
+    <div class="container my-5">
+        <div class="overlay"></div>
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h3 class="display logo-font">Order Confirmation</h3>
+                <p class="lead text-muted">Thank You!! Your order has been placed successfully!</p>
+                <hr>
+            </div>
         <div class="row">
-            <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4">Thank You</h2>
-                <hr>
-                <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+            <div class="col-12 text-center">
+                <p class="lead">A confirmation email has been sent to <strong>{{ order.email }}</strong>.</p>
+                <p class="text-muted">Below are the details of your order:</p>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 col-lg-7"></div>
+        <!-- Order Information -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">Order Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Order Number:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">{{ order.order_number }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Order Date:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">{{ order.date }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Items -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">Order Items</h5>
+                    </div>
+                    <div class="card-body">
+                        {% for item in order.lineitems.all %}
+                        <div class="row mb-3">
+                            <div class="col-8">
+                                <p class="mb-0">
+                                    <strong>{{ item.product.name }}</strong>
+                                    {% if item.product_size %}
+                                        <span class="text-muted">(Size: {{ item.product_size|upper }})</span>
+                                    {% endif %}
+                                </p>
+                                <p class="text-muted small">Quantity: {{ item.quantity }}</p>
+                            </div>
+                            <div class="col-4 text-end">
+                                <p class="mb-0">${{ item.lineitem_total|floatformat:2 }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Delivery Information -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">Delivery Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Full Name:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">{{ order.full_name }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Address:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">{{ order.street_address1 }}</p>
+                                {% if order.street_address2 %}
+                                    <p class="mb-0">{{ order.street_address2 }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Town/City:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">{{ order.town_or_city }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>County:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">{{ order.county }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Postal Code:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">{{ order.postcode }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Country:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">{{ order.country }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Phone Number:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">{{ order.phone_number }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Billing Information -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">Billing Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Order Total:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">${{ order.order_total|floatformat:2 }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Delivery:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">${{ order.delivery_cost|floatformat:2 }}</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <p class="mb-0"><strong>Grand Total:</strong></p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0"><strong>${{ order.grand_total|floatformat:2 }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-end">
+                    <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="btn btn-dark rounded-0">
+                        <i class="fas fa-gifts me-2"></i> Check Out the Latest Deals
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="row">
-			<div class="col-12 col-lg-7 text-right">
-				<a href="{% url 'products' %}" class="btn btn-black rounded-0 my-2">
-					<span class="icon mr-2">
-						<i class="fas fa-gifts"></i>
-					</span>
-					<span class="text-uppercase">Now check out the latest deals!</span>
-				</a>
-			</div>
-		</div>
     </div>
 {% endblock %}

@@ -51,6 +51,8 @@ form.addEventListener('submit', function (ev) {
     // Disable the card element and submit button to prevent multiple submissions
     card.update({ 'disabled': true });
     $('#submit-button').attr('disabled', true);
+    $('#payment-form').fadeToggle(100);
+    $('#loading-overlay').fadeToggle(100);
 
     // Confirm the card payment
     stripe.confirmCardPayment(clientSecret, {
@@ -68,10 +70,15 @@ form.addEventListener('submit', function (ev) {
                 <span>${result.error.message}</span>
             `;
             $(errorDiv).html(html);
+            $('#payment-form').fadeToggle(100);
+            $('#loading-overlay').fadeToggle(100);
 
             // Re-enable the card element and submit button
             card.update({ 'disabled': false });
             $('#submit-button').attr('disabled', false);
+
+            // Hide the loading overlay
+            document.getElementById('loading-overlay').classList.add('d-none');
         } else {
             if (result.paymentIntent.status === 'succeeded') {
                 // Submit the form if payment is successful

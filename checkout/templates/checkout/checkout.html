@@ -2,16 +2,21 @@
 {% load static %}
 {% load bag_tools %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
 
 {% block content %}
-    <div class="overlay"></div>
     <div class="container my-5">
+        <div class="overlay"></div>
         <div class="row mb-4">
             <div class="col-12 text-center">
                 <h3 class="display logo-font">Your Bag</h3>
                 <p class="lead text-muted">Check your items before proceeding to checkout</p>
                 <hr>
             </div>
+        </div>
         <div class="row">
             <!-- Order Summary Section -->
             <div class="col-12 col-lg-6 order-lg-last mb-5">
@@ -122,6 +127,13 @@
                 </form>
             </div>
         </div>
+    </div>
+    <div id="loading-overlay">
+        <h1 class="text-light logo-font loading-spinner">
+            <span class="icon">
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+            </span>
+        </h1>
     </div>
 {% endblock %}
 
