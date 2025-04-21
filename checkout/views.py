@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from decimal import Decimal
+
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -75,9 +77,9 @@ def checkout(request):
 
                     # Calculate delivery cost and grand total
                     if order_total < settings.FREE_DELIVERY_THRESHOLD:
-                        delivery_cost = settings.STANDARD_DELIVERY_COST
+                        delivery_cost = Decimal(settings.STANDARD_DELIVERY_PERCENTAGE) * order_total / Decimal(100)
                     else:
-                        delivery_cost = 0
+                        delivery_cost = Decimal(0)
                     grand_total = order_total + delivery_cost
 
                     # Save totals to the order
