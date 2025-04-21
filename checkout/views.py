@@ -1,3 +1,6 @@
+import stripe
+import json
+
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
@@ -9,9 +12,6 @@ from products.models import Product
 from profiles.forms import UserProfileForm
 from profiles.models import UserProfile
 from bag.contexts import bag_contents
-
-import stripe
-import json
 
 
 @require_POST
@@ -56,9 +56,37 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
+
+            order_total = 0
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
+
+                    # Check if item_data is an integer or a dictionary
+                    if isinstance(item_data, int):
+                        # If item_data is an integer, it represents the quantity
+                        quantity = item_data
+                    else:
+                        # If item_data is a dictionary, extract the quantity
+                        quantity = item_data['quantity']
+
+                    # Calculate order total
+                    order_total += product.price * quantity
+
+                    # Calculate delivery cost and grand total
+                    if order_total < settings.FREE_DELIVERY_THRESHOLD:
+                        delivery_cost = settings.STANDARD_DELIVERY_COST
+                    else:
+                        delivery_cost = 0
+                    grand_total = order_total + delivery_cost
+
+                    # Save totals to the order
+                    order.order_total = order_total
+                    order.delivery_cost = delivery_cost
+                    order.grand_total = grand_total
+                    order.save()
+
+                    # Create order line items
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
