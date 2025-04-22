@@ -34,7 +34,7 @@ DEBUG = 'DEVELOPMENT' in os.environ
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "amri-fashion-aa5dd1ef8dac.herokuapp.com/",
+    'amri-fashion-aa5dd1ef8dac.herokuapp.com',
 ]
 
 
