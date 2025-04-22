@@ -32,7 +32,11 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-thumbnail me-3" style="width: 75px; height: 75px;">
+                                                {% if item.product.image %}
+                                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-thumbnail me-3" style="width: 75px; height: 75px;">
+                                                {% else %}
+                                                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" style="width: 75px; height: 75px;">
+                                                {% endif %}
                                                 <span>{{ item.product.name }}</span>
                                             </div>
                                         </td>
