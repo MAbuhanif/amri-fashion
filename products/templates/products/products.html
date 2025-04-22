@@ -40,6 +40,14 @@
                             {% else %}
                                 <small class="text-muted">No Rating</small>
                             {% endif %}
+                            <!-- if the user is superuser allow to edit and delete -->
+                            {% if user.is_superuser %}
+                                <div class="mt-2">
+                                    <a href="{% url 'edit_product' product.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
+                                    <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                                </div>
+                            {% endif %}
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm mt-2">View Details</a>
                         </div>
                     </div>
                 </div>
