@@ -1,1 +1,1 @@
-web: gunicorn amri_fashion.wsgi
+web: gunicorn amri_fashion.wsgi:application
