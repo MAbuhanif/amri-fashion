@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -9,6 +10,9 @@ from .forms import ProductForm
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
     products = Product.objects.all()
+    paginator = Paginator(products, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     query = None
 
     if request.GET:
@@ -23,7 +27,11 @@ def all_products(request):
             products = products.filter(queries)
 
     return render(request, 'products/products.html',
-                  {'products': products, 'search_term': query})
+                  {
+                      'products': products,
+                      'search_term': query,
+                      'page_obj': page_obj
+                  })
 
 
 def product_detail(request, product_id):
@@ -46,7 +54,10 @@ def add_product(request):
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[form.instance.id]))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to add product. Please ensure the form is valid.'
+            )
     else:
         form = ProductForm()
 
@@ -72,7 +83,10 @@ def edit_product(request, product_id):
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to update product. '
+                'Please ensure the form is valid.'
+            )
     else:
         form = ProductForm(instance=product)
 

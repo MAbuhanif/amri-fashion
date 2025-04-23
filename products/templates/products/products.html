@@ -2,81 +2,104 @@
 {% load static %}
 
 {% block content %}
-    <div class="container my-5">
-        <div class="row mb-4">
-            <div class="col-12 text-center">
-                <h3 class="display logo-font">Products</h3>
-                <p class="lead text-muted">Explore our latest collection</p>
-                <hr>
-            </div>
-        </div>
-        <div class="row">
-            {% for product in products %}
-                <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <!-- Product Image -->
-                        {% if product.image %}
-                            <a href="{% url 'product_detail' product.id %}">
-                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                            </a>
-                        {% else %}
-                            <a href="{% url 'product_detail' product.id %}">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                            </a>
-                        {% endif %}
-
-                        <!-- Product Details -->
-                        <div class="card-body text-center">
-                            <h5 class="card-title mb-1">{{ product.name }}</h5>
-                            <p class="card-text text-muted small">{{ product.description|truncatewords:15 }}</p>
-                        </div>
-
-                        <!-- Product Footer -->
-                        <div class="card-footer bg-white border-0 text-center">
-                            <p class="lead font-weight-bold mb-1">${{ product.price }}</p>
-                            {% if product.rating %}
-                                <small class="text-warning"><i class="fas fa-star"></i> {{ product.rating }} / 5</small>
-                            {% else %}
-                                <small class="text-muted">No Rating</small>
-                            {% endif %}
-                            <!-- if the user is superuser allow to edit and delete -->
-                            {% if user.is_superuser %}
-                                <div class="mt-2">
-                                    <a href="{% url 'edit_product' product.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
-                                    <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
-                                </div>
-                            {% endif %}
-                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm mt-2">View Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add <hr> dynamically based on forloop.counter -->
-                {% if forloop.counter|divisibleby:1 %}
-                    <div class="col-12 d-sm-none mb-5">
-                        <hr>
-                    </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:2 %}
-                    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                        <hr>
-                    </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:3 %}
-                    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                        <hr>
-                    </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:4 %}
-                    <div class="col-12 d-none d-xl-block mb-5">
-                        <hr>
-                    </div>
-                {% endif %}
-            {% empty %}
-                <div class="col-12 text-center">
-                    <p class="text-muted">No products available at the moment.</p>
-                </div>
-            {% endfor %}
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h3 class="display logo-font">Products</h3>
+            <p class="lead text-muted">Explore our latest collection</p>
+            <hr>
         </div>
     </div>
+
+    <div class="row">
+        {% for product in page_obj %}
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <!-- Product Image -->
+                    {% if product.image %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        </a>
+                    {% endif %}
+
+                    <!-- Product Details -->
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-1">{{ product.name }}</h5>
+                        <p class="card-text text-muted small">{{ product.description|truncatewords:15 }}</p>
+                    </div>
+
+                    <!-- Product Footer -->
+                    <div class="card-footer bg-white border-0 text-center">
+                        <p class="lead fw-bold mb-1">${{ product.price }}</p>
+                        {% if product.rating %}
+                            <small class="text-warning"><i class="fas fa-star"></i> {{ product.rating }} / 5</small>
+                        {% else %}
+                            <small class="text-muted">No Rating</small>
+                        {% endif %}
+                        {% if user.is_superuser %}
+                            <div class="mt-2">
+                                <a href="{% url 'edit_product' product.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
+                                <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                            </div>
+                        {% endif %}
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm mt-2">View Details</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No products available at the moment.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center mt-4">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" aria-label="First">
+                                <span aria-hidden="true">&laquo;&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                                <span aria-hidden="true">&raquo;&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
 {% endblock %}

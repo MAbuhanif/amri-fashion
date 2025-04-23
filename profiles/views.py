@@ -23,7 +23,9 @@ def profile(request):
                            'Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
-    orders = profile.orders.all()
+
+    # Sort orders by date in descending order (newest to oldest)
+    orders = profile.orders.all().order_by('-date')
 
     template = 'profiles/profile.html'
     context = {
