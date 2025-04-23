@@ -9,7 +9,6 @@
 
 {% block content %}
     <div class="container my-5">
-        <div class="overlay"></div>
         <div class="row mb-4">
             <div class="col-12 text-center">
                 <h3 class="display logo-font">Your Bag</h3>
@@ -71,12 +70,12 @@
                 <p class="text-muted">Please fill out the form below to complete your order</p>
                 <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                     {% csrf_token %}
-                    <fieldset class="rounded px-3 mb-5">
+                    <fieldset class="border px-3 mb-5">
                         <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
                         {{ order_form.full_name | as_crispy_field }}
                         {{ order_form.email | as_crispy_field }}
                     </fieldset>
-                    <fieldset class="rounded px-3 mb-5">
+                    <fieldset class="border px-3 mb-5">
                         <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
                         {{ order_form.phone_number | as_crispy_field }}
                         {{ order_form.country | as_crispy_field }}
@@ -107,17 +106,11 @@
                         <input type="hidden" name="client_secret" id="client_secret" value="{{ client_secret }}">
                     </fieldset>
                     <div class="submit-button text-right mt-5 mb-2">                    
-                        <a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="font-weight-bold">Adjust Bag</span>
+                        <a href="{% url 'view_bag' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-chevron-left"></i> Adjust Bag
                         </a>
-                        <button id="submit-button" class="btn btn-black rounded-0">
-                            <span class="font-weight-bold">Complete Order</span>
-                            <span class="icon">
-                                <i class="fas fa-lock"></i>
-                            </span>
+                        <button id="submit-button" class="btn btn-dark">
+                            Complete Order <i class="fas fa-lock"></i>
                         </button>
                         <p class="small text-danger my-0">
                             <span class="icon">
