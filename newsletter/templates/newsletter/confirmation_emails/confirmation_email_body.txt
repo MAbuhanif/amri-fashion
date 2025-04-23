@@ -1,0 +1,12 @@
+Hello from Amri Fashion!
+
+Thanks for subscribing to our newsletter!
+
+Keep an eye out for exciting news from Amri Fashion, and don't forget to check out our deals!
+
+
+
+Amri Fashion
+
+If you wish to unsubscribe from these emails, click the link below (you may need to log in to your account)
+https://amri-fashion-aa5dd1ef8dac.herokuapp.com/newsletter/unsubscribe

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <h1 class="text-center logo-font mb-4">Subscribe to Our Newsletter</h1>
+            <p class="text-center text-muted">
+                Stay updated with the latest news, exclusive deals, and more!
+            </p>
+            <form method="POST" enctype="multipart/form-data" class="mt-4">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-dark btn-lg rounded-0 text-uppercase" type="submit">
+                        Subscribe
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
