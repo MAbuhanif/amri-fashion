@@ -31,15 +31,6 @@ body {
     color: #000 !important;
 }
 
-/* Buttons */
-.shop-now-button,
-.btn-black {
-    background: black;
-    color: white;
-    min-width: 260px;
-    border: none;
-    transition: background 0.3s ease, color 0.3s ease;
-}
 
 .shop-now-button:hover,
 .shop-now-button:active,
