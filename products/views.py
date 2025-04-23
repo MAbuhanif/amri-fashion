@@ -10,9 +10,6 @@ from .forms import ProductForm
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
     products = Product.objects.all()
-    paginator = Paginator(products, 8)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
     query = None
 
     if request.GET:
@@ -26,9 +23,13 @@ def all_products(request):
                 description__icontains=query)
             products = products.filter(queries)
 
+    paginator = Paginator(products, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     return render(request, 'products/products.html',
                   {
-                      'products': products,
+                      'products': page_obj.object_list,
                       'search_term': query,
                       'page_obj': page_obj
                   })

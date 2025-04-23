@@ -48,7 +48,7 @@
                         <p class="mb-0 text-muted small">{{ item.quantity }} @ ${{ item.product.price }} each</p>
                     </div>
                     <div class="col-4 text-end">
-                        <p class="mb-0">${{ item.quantity|floatformat:2 }}</p>
+                        <p class="mb-0">{{ item.quantity}}</p>
                     </div>
                 </div>
                 {% endfor %}
