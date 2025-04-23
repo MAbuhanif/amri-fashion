@@ -5,4 +5,4 @@ def handler404(request, exception):
     """
     Custom 404 error handler.
     """
-    return render(request, '404.html', status=404)
+    return render(request, 'errors/404.html', status=404)
