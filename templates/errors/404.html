@@ -1,32 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 <div class="container my-5">
-    <div class="row align-items-center">
-        <!-- Left Section: Text -->
-        <div class="col-12 col-md-6 text-center text-md-start">
+    <div class="row justify-content-center">
+        <!-- Centered Text Section -->
+        <div class="col-12 col-md-8 text-center">
             <h1 class="display-4 logo-font text-black">
                 404 Not Found
             </h1>
-            <p class="lead">The page you are looking for does not exist.</p>
+            <p class="lead text-muted">
+                The page you are looking for does not exist or has been moved.
+            </p>
             <div class="mt-4">
-                <a href="{% url 'products' %}" class="shop-now-button btn btn-dark btn-lg rounded-0 text-uppercase py-3">
-                    Return to shop
+                <a href="{% url 'products' %}" class="btn btn-dark btn-lg rounded-0 text-uppercase py-3">
+                    Return to Shop
                 </a>
             </div>
-            <div class="mt-4">
-                <a href="{% url 'home' %}" class="shop-now-button btn btn-dark btn-lg rounded-0 text-uppercase py-3">
-                    Go to Home 
-                </a>
-            </div>
-        </div>
-
-        <!-- Right Section: Image -->
-        <div class="col-12 col-md-6 text-center mt-4 mt-md-0">
-            <img src="{{ MEDIA_URL }}amri-fashion-banner.png" alt="Fashion Banner" class="img-fluid rounded shadow">
         </div>
     </div>
 </div>
-{% endblock %}
-{% block scripts %}
 {% endblock %}
