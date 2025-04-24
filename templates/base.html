@@ -9,6 +9,14 @@
         <meta name="keywords" content="fashion, ecommerce, clothing, style">
         <meta name="author" content="Amri-Fashion Team">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- favicons -->
+        <link rel="shortcut icon" href="{% static 'images/favicons/android-chrome-192x192.png' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'images/favicons/android-chrome-512x512.png' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'images/favicons/apple-touch-icon.png' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'images/favicons/favicon-16x16.png' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'images/favicons/favicon-32x32.png' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'images/favicons/favicon.ico' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'images/favicons/site.webmanifest' %}" type="image/x-icon">
     {% endblock %}
     
     {% block extra_meta %}
@@ -40,14 +48,14 @@
     <header class="container-fluid bg-light shadow-sm fixed-top py-2">
         <div class="row align-items-center">
             <!-- Logo Section -->
-            <div class="col-6 col-lg-4 text-start">
+            <div class="col-6 col-lg-3 text-start">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h2 class="logo-font text-dark my-0"><strong>Amri</strong> Fashion</h2>
                 </a>
             </div>
 
             <!-- Search Bar Section -->
-            <div class="col-12 col-lg-4 my-2 my-lg-0 d-none d-lg-block">
+            <div class="col-12 col-lg-5 my-2 my-lg-0">
                 <form method="GET" action="{% url 'products' %}">
                     <div class="input-group">
                         <input class="form-control border rounded-0" type="text" name="q" placeholder="Search our site">
@@ -58,8 +66,26 @@
                 </form>
             </div>
 
+            <!-- Contact Us and FAQs Section -->
+            <div class="col-12 col-lg-2 text-center my-2 my-lg-0">
+                <ul class="list-inline list-unstyled my-0 d-flex justify-content-center align-items-center gap-2">
+                    <!-- Contact Us -->
+                    <li class="list-inline-item">
+                        <a href="{% url 'contact-form' %}" class="btn btn-outline-dark rounded-0 text-uppercase">
+                            Contact Us
+                        </a>
+                    </li>
+                    <!-- FAQs -->
+                    <li class="list-inline-item">
+                        <a href="{% url 'faq' %}" class="btn btn-outline-dark rounded-0 text-uppercase">
+                            FAQs
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
             <!-- User Account and Cart Section -->
-            <div class="col-6 col-lg-4 text-end">
+            <div class="col-6 col-lg-2 text-end">
                 <ul class="list-inline list-unstyled my-0 d-flex justify-content-end align-items-center">
                     <!-- User Dropdown -->
                     <li class="list-inline-item dropdown me-3">
@@ -119,122 +145,74 @@
                 </ul>
             </div>
         </div>
-
-        <!-- Navbar Section -->
-        <div class="row bg-white">
-            <nav class="navbar navbar-expand-lg navbar-light w-100">
-                <!-- Navbar Toggler for Mobile -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Navbar Links -->
-                <div class="collapse navbar-collapse" id="main-nav">
-                    {% include 'includes/main-nav.html' %}
-                </div>
-            </nav>
-        </div>
     </header>
-
-    <!-- Messages Section -->
-    {% if messages %}
-    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
-        {% for message in messages %}
-            <div class="toast align-items-center text-bg-{{ message.tags }} border-0 mb-2" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        {% if message.tags == 'success' %}
-                            <i class="fas fa-check-circle me-2"></i>
-                        {% elif message.tags == 'error' %}
-                            <i class="fas fa-times-circle me-2"></i>
-                        {% elif message.tags == 'warning' %}
-                            <i class="fas fa-exclamation-circle me-2"></i>
-                        {% elif message.tags == 'info' %}
-                            <i class="fas fa-info-circle me-2"></i>
-                        {% endif %}
-                        {{ message }}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-    <script>
-        const toastElList = [].slice.call(document.querySelectorAll('.toast'));
-        const toastList = toastElList.map(function (toastEl) {
-            return new bootstrap.Toast(toastEl).show();
-        });
-    </script>
-    {% endif %}
 
     <!-- Main Content Section -->
     <main class="container mt-5 pt-5">
         {% block content %}
         {% endblock %}
     </main>
-<!-- Footer -->
-<!-- Footer -->
-<footer class="container py-5" id="footer-container">
-    <div class="row">
-        <!-- Account Links -->
-        <div class="col-12 col-md-4 mb-4">
-            <h5 class="fw-bold">Account</h5>
-            <ul class="nav flex-column">
-                {% if user.is_authenticated %}
-                    <li class="nav-item mb-2">
-                        <a href="{% url 'profile' %}" class="nav-link p-0 text-muted">My Profile</a>
+
+    <!-- Footer -->
+    <footer class="container-fluid py-4 mt-auto bg-light">
+        <div class="row">
+            <!-- Account Links -->
+            <div class="col-12 col-md-4 mb-4">
+                <h5 class="fw-bold">Account</h5>
+                <ul class="nav flex-column">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item mb-2">
+                            <a href="{% url 'profile' %}" class="nav-link p-0 text-muted">My Profile</a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a href="{% url 'account_logout' %}" class="nav-link p-0 text-muted">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item mb-2">
+                            <a href="{% url 'account_signup' %}" class="nav-link p-0 text-muted">Register</a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a href="{% url 'account_login' %}" class="nav-link p-0 text-muted">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="col-12 col-md-4 mb-4 text-center text-md-start">
+                <h5 class="fw-bold">Subscribe to Our Newsletter</h5>
+                <p class="text-muted">Get the latest updates, exclusive deals, and more!</p>
+                <form>
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                        <a class="btn btn-dark rounded-0 text-uppercase" id="mailing-list-button" href="{% url 'mailing-list-subscribe' %}">
+                            Subscribe Now
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="col-12 col-md-4 mb-4 text-center text-md-end">
+                <h5 class="fw-bold">Follow Us</h5>
+                <ul class="list-unstyled d-flex justify-content-center justify-content-md-end">
+                    <li class="ms-3">
+                        <a class="text-muted" href="https://github.com/MAbuhanif" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github fa-lg"></i>
+                        </a>
                     </li>
-                    <li class="nav-item mb-2">
-                        <a href="{% url 'account_logout' %}" class="nav-link p-0 text-muted">Logout</a>
+                    <li class="ms-3">
+                        <a class="text-muted" href="https://www.linkedin.com/in/mundino/" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-linkedin fa-lg"></i>
+                        </a>
                     </li>
-                {% else %}
-                    <li class="nav-item mb-2">
-                        <a href="{% url 'account_signup' %}" class="nav-link p-0 text-muted">Register</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="{% url 'account_login' %}" class="nav-link p-0 text-muted">Login</a>
-                    </li>
-                {% endif %}
-            </ul>
+                </ul>
+            </div>
         </div>
 
-        <!-- Newsletter Subscription -->
-        <div class="col-12 col-md-4 mb-4 text-center text-md-start">
-            <h5 class="fw-bold">Subscribe to Our Newsletter</h5>
-            <p class="text-muted">Get the latest updates, exclusive deals, and more!</p>
-            <form>
-                <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                    <a class="btn btn-dark rounded-0 text-uppercase" id="mailing-list-button" href="{% url 'mailing-list-subscribe' %}">
-                        Subscribe Now
-                    </a>
-                </div>
-            </form>
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-1 my-1 border-top">
+            <p class="mb-0 text-muted">&copy; 2025 Amri Fashion, All rights reserved.</p>
+            <p class="mb-0 text-muted">Site designed & developed by Mundino Abete</p>
         </div>
-
-        <!-- Social Media Links -->
-        <div class="col-12 col-md-4 mb-4 text-center text-md-end">
-            <h5 class="fw-bold">Follow Us</h5>
-            <ul class="list-unstyled d-flex justify-content-center justify-content-md-end">
-                <li class="ms-3">
-                    <a class="text-muted" href="https://github.com/MAbuhanif" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-github fa-lg"></i>
-                    </a>
-                </li>
-                <li class="ms-3">
-                    <a class="text-muted" href="https://www.linkedin.com/in/mundino/" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-linkedin fa-lg"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="d-flex flex-column flex-sm-row justify-content-between py-1 my-1 border-top">
-        <p class="mb-0 text-muted">&copy; 2025 Amri Fashion, All rights reserved.</p>
-        <p class="mb-0 text-muted">Site designed & developed by Mundino Abete</p>
-    </div>
-</footer>
-    {% block postloadjs %}
-    {% endblock %}
+    </footer>
 </body>
 </html>

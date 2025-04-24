@@ -106,7 +106,19 @@ def delete_product(request, product_id):
     if not request.user.is_superuser:
         messages.error(request, 'Only store owners can delete products.')
         return redirect(reverse('home'))
+
     product = get_object_or_404(Product, pk=product_id)
-    product.delete()
-    messages.success(request, 'Product deleted!')
-    return redirect(reverse('products'))
+
+    if request.method == 'POST':
+        product.delete()
+        messages.success(
+            request, f'Product "{product.name}" has been deleted successfully!'
+        )
+        return redirect(reverse('products'))
+
+    template = 'products/product_confirm_delete.html'
+    context = {
+        'product': product,
+    }
+
+    return render(request, template, context)
