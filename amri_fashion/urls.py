@@ -20,6 +20,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import handler404
 
+from django.contrib.sitemaps.views import sitemap
+from products.sitemaps import StaticSitemap, ProductSitemap
+
+
+# Sitemap configuration
+sitemaps = {
+    'static': StaticSitemap,
+    'products': ProductSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +41,7 @@ urlpatterns = [
     path('newsletter/', include('newsletter.urls')),
     path('contact/', include('contact.urls')),
     path('faq/', include('faq.urls')),
+    path("sitemap.xml/", sitemap, {'sitemaps': sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Custom 404 error handler

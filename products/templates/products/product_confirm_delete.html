@@ -1,11 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}Delete Product{% endblock %}
 {% block content %}
-<h2>Confirm Delete</h2>
-<p>Are you sure you want to delete "{{ product.name }}"?</p>
-<form method="POST">
-    {% csrf_token %}
-    <button class="btn btn-danger" type="submit">Yes, Delete</button>
-    <a class="btn btn-secondary" href="{% url 'products' %}">Cancel</a>
-</form>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 text-center">
+            <h1 class="text-danger mb-4">Confirm Delete</h1>
+            <p class="text-muted">
+                Are you sure you want to delete the product <strong>"{{ product.name }}"</strong>? This action cannot be undone.
+            </p>
+            <form method="POST" class="mt-4">
+                {% csrf_token %}
+                <button class="btn btn-danger btn-lg rounded-0 text-uppercase" type="submit">
+                    Yes, Delete
+                </button>
+                <a class="btn btn-secondary btn-lg rounded-0 text-uppercase" href="{% url 'products' %}">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
