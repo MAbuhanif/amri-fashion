@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <h1 class="text-center logo-font mb-4">Message Details</h1>
+            <p class="text-muted text-center">
+                Message sent on: <strong>{{ object.date_created }}</strong>
+            </p>
+
+            <!-- Details Table -->
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Email:</th>
+                        <td>{{ object.email }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Name:</th>
+                        <td>{{ object.name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Subject:</th>
+                        <td>{{ object.subject }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Message:</th>
+                        <td>{{ object.message }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Responded:</th>
+                        <td>
+                            {% if object.responded %}
+                                <span class="text-success">Yes</span>
+                            {% else %}
+                                <span class="text-danger">No</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+                <a href="{% url 'contact-list' %}" class="btn btn-secondary rounded-0 text-uppercase">
+                    Back to Contact List
+                </a>
+                {% if not object.responded %}
+                    <button class="btn btn-dark rounded-0 text-uppercase" onclick="responseForm()">
+                        Respond to Message <i class="fa-solid fa-caret-down"></i>
+                    </button>
+                {% endif %}
+                <a href="{% url 'contact-delete' object.id %}" class="btn btn-danger rounded-0 text-uppercase">
+                    Delete Message
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Response Form -->
+    <div id="formDiv" class="mt-5" style="display: none;">
+        <div class="card shadow">
+            <div class="card-body">
+                <h5 class="card-title">Respond to Message</h5>
+                <form method="POST" id="response-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="form-group">
+                        <label for="email">Email To:</label>
+                        <input type="email" id="email" class="form-control" readonly value="{{ object.email }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" class="form-control" readonly value="{{ object.subject }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email_body">Message:</label>
+                        <textarea id="email_body" name="email_body" class="form-control" rows="6">
+Dear {{ object.name }},
+
+...
+
+Best regards,
+Amri Fashion
+https://amri-fashion-aa5dd1ef8dac.herokuapp.com/
+                        </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark rounded-0 text-uppercase mt-3">
+                        Send Email
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Toggles the response form visibility
+    function responseForm() {
+        var form = document.getElementById("formDiv");
+        form.style.display = form.style.display === "none" ? "block" : "none";
+
+        // Sets responded status to True
+        let checkBox = document.getElementById("id_responded");
+        checkBox.checked = true;
+    }
+</script>
+{% endblock %}

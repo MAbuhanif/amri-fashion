@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container my-5">
+    <h1 class="text-center logo-font mb-4">Contact Requests</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="text-center">Responded?</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                    <tr>
+                        <!-- Responded Status -->
+                        <td class="text-center">
+                            {% if contact.responded %}
+                                <i class="fa-solid fa-check text-success"></i>
+                            {% else %}
+                                <i class="fa-solid fa-xmark text-danger"></i>
+                            {% endif %}
+                        </td>
+                        <!-- Details Link -->
+                        <td>
+                            <a href="{% url 'contact-update' contact.id %}" class="btn btn-sm btn-primary rounded-0">
+                                View
+                            </a>
+                        </td>
+                        <!-- Subject -->
+                        <td>{{ contact.subject }}</td>
+                        <!-- Name -->
+                        <td>{{ contact.name }}</td>
+                        <!-- Email -->
+                        <td>{{ contact.email }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

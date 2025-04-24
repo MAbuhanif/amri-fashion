@@ -70,6 +70,7 @@
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
                                     <li><a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a></li>
+                                    <li><a href="{% url 'contact-list' %}" class="dropdown-item">Contact Requests</a></li>
                                 {% endif %}
                                 <li><a href="{% url 'profile' %}" class="dropdown-item">My Profile</a></li>
                                 <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
@@ -198,7 +199,7 @@
         </div>
 
         <!-- Newsletter Subscription -->
-        <div class="col-12 col-md-4 mb-4">
+        <div class="col-12 col-md-4 mb-4 text-center text-md-start">
             <h5 class="fw-bold">Subscribe to Our Newsletter</h5>
             <p class="text-muted">Get the latest updates, exclusive deals, and more!</p>
             <form>

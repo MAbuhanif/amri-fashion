@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 text-center">
+            <h1 class="logo-font mb-4 text-success">Message Sent</h1>
+            <h2 class="my-4">
+                Thanks for getting in touch!
+            </h2>
+            <p class="text-muted">
+                One of our team members will respond to your message as soon as possible.
+            </p>
+            <div class="mt-4">
+                <a href="{% url 'home' %}" class="btn btn-dark btn-lg rounded-0 text-uppercase">
+                    Return to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
