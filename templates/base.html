@@ -5,11 +5,10 @@
 <head>
     {% block meta %}
         <meta charset="UTF-8">
-        <meta name="description" content="Amri-Fashion - Trendy & Affordable Fashion">
-        <meta name="keywords" content="fashion, ecommerce, clothing, style">
+        <meta name="description" content="Amri-Fashion - Trendy & Affordable Fashion, Shop the latest styles online, from clothing to accessories, all at great prices, perfect for every occasion.">
+        <meta name="keywords" content="fashion, ecommerce, clothing, style, trendy, affordable, online shopping, accessories, Amri-Fashion">
         <meta name="author" content="Amri-Fashion Team">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
     {% endblock %}
     
     {% block extra_meta %}
@@ -41,15 +40,14 @@
     <header class="container-fluid bg-light shadow-sm fixed-top py-2">
         <div class="row align-items-center">
             <!-- Logo Section -->
-            <div class="col-6 col-lg-3 text-start">
+            <div class="col-6 col-lg-4 text-start">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <img src="{% static 'images/logo.png' %}" alt="Amri Fashion Logo" class="logo-img">
                     <h2 class="logo-font text-dark my-0"><strong>Amri</strong> Fashion</h2>
                 </a>
             </div>
 
             <!-- Search Bar Section -->
-            <div class="col-12 col-lg-5 my-2 my-lg-0">
+            <div class="col-12 col-lg-4 my-2 my-lg-0 d-none d-lg-block">
                 <form method="GET" action="{% url 'products' %}">
                     <div class="input-group">
                         <input class="form-control border rounded-0" type="text" name="q" placeholder="Search our site">
@@ -60,26 +58,8 @@
                 </form>
             </div>
 
-            <!-- Contact Us and FAQs Section -->
-            <div class="col-12 col-lg-2 text-center my-2 my-lg-0">
-                <ul class="list-inline list-unstyled my-0 d-flex justify-content-center align-items-center gap-2">
-                    <!-- Contact Us -->
-                    <li class="list-inline-item">
-                        <a href="{% url 'contact-form' %}" class="btn btn-outline-dark rounded-0 text-uppercase">
-                            Contact Us
-                        </a>
-                    </li>
-                    <!-- FAQs -->
-                    <li class="list-inline-item">
-                        <a href="{% url 'faq' %}" class="btn btn-outline-dark rounded-0 text-uppercase">
-                            FAQs
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
             <!-- User Account and Cart Section -->
-            <div class="col-6 col-lg-2 text-end">
+            <div class="col-6 col-lg-4 text-end">
                 <ul class="list-inline list-unstyled my-0 d-flex justify-content-end align-items-center">
                     <!-- User Dropdown -->
                     <li class="list-inline-item dropdown me-3">
@@ -139,16 +119,62 @@
                 </ul>
             </div>
         </div>
+
+        <!-- Navbar Section -->
+        <div class="row bg-white">
+            <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <!-- Navbar Toggler for Mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    {% include 'includes/main-nav.html' %}
+                </div>
+            </nav>
+        </div>
     </header>
+
+    <!-- Messages Section -->
+    {% if messages %}
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+        {% for message in messages %}
+            <div class="toast align-items-center text-bg-{{ message.tags }} border-0 mb-2" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {% if message.tags == 'success' %}
+                            <i class="fas fa-check-circle me-2"></i>
+                        {% elif message.tags == 'error' %}
+                            <i class="fas fa-times-circle me-2"></i>
+                        {% elif message.tags == 'warning' %}
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                        {% elif message.tags == 'info' %}
+                            <i class="fas fa-info-circle me-2"></i>
+                        {% endif %}
+                        {{ message }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        const toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        const toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl).show();
+        });
+    </script>
+    {% endif %}
 
     <!-- Main Content Section -->
     <main class="container mt-5 pt-5">
         {% block content %}
         {% endblock %}
     </main>
-
     <!-- Footer -->
-    <footer class="container-fluid py-4 mt-auto bg-light">
+<!-- Footer -->
+<footer class="container py-5" id="footer-container">
         <div class="row">
             <!-- Account Links -->
             <div class="col-12 col-md-4 mb-4">
@@ -208,5 +234,7 @@
             <p class="mb-0 text-muted">Site designed & developed by Mundino Abete</p>
         </div>
     </footer>
+    {% block postloadjs %}
+    {% endblock %}
 </body>
 </html>
