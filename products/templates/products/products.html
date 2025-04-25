@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="container my-5">
-    <div class="row mb-4">
+    <div class="row mb-5">
         <div class="col-12 text-center">
             <h3 class="display logo-font">Products</h3>
             <p class="lead text-muted">Explore our latest collection</p>
@@ -38,6 +38,13 @@
                     <!-- Product Footer -->
                     <div class="card-footer bg-white border-0 text-center">
                         <p class="lead fw-bold mb-1">${{ product.price }}</p>
+                        {% if product.category %}
+                            <p class="small mt-1 mb-0">
+                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                    <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                </a>
+                            </p>
+                        {% endif %}
                         {% if product.rating %}
                             <small class="text-warning"><i class="fas fa-star"></i> {{ product.rating }} / 5</small>
                         {% else %}
@@ -49,7 +56,7 @@
                                 <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
                             </div>
                         {% endif %}
-                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm mt-2">View Details</a>
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-black btn-sm mt-2">View Details</a>
                     </div>
                 </div>
             </div>
