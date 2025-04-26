@@ -33,10 +33,11 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 {% include "bag/quantity-form.html" %}
+                                <span class="col-12 col-sm-6">
+                                    {% include "bag/remove-button.html" %}
+                                </span>
                             </div>
-                            <div class="col-12 col-sm-6">
-                                {% include "bag/remove-button.html" %}
-                            </div>
+                            
                             <div class="col-12 col-sm-6">
                                 {% include "bag/bag-total.html" %}
                             </div>
@@ -44,10 +45,10 @@
                                 {% include "bag/checkout-buttons.html" %}   
                             </div>
                         </div>
-                        <div class="row"><div class="col"><hr>
+                        <div class="row"><div class="col"><hr></div></div>
                     {% endfor %}
-                    
-                </div>
+                </div>  
+                
                     <!-- Bag Items Table -->
                     <div class="table-responsive rounded shadow-sm d-none d-md-block">
                         <table class="table table-bordered table-hover">
@@ -89,6 +90,7 @@
                             </tfoot>
                         </table>
                     </div>
+            </div>  
                 {% else %}
                     <!-- Empty Bag Message -->
                     <div class="text-center">
@@ -99,6 +101,6 @@
                     </div>
                 {% endif %}
             </div>
-        </div>
+        
     </div>
 {% endblock %}
