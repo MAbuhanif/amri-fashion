@@ -82,7 +82,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'amri_fashion.urls'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap5'  
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 TEMPLATES = [
     {

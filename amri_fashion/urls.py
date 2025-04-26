@@ -42,8 +42,23 @@ urlpatterns = [
     path('newsletter/', include('newsletter.urls')),
     path('contact/', include('contact.urls')),
     path('faq/', include('faq.urls')),
-    path("sitemap.xml/", sitemap, {'sitemaps': sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
-    path('robots.txt/', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), name="robots_file"),
+    path(
+        "sitemap.xml/",
+        sitemap,
+        {'sitemaps': sitemaps},
+        name=(
+            "django.contrib.sitemaps."
+            "views.sitemap"
+        ),
+    ),
+    path(
+        'robots.txt/',
+        TemplateView.as_view(
+            template_name="robots.txt",
+            content_type="text/plain"
+        ),
+        name="robots_file",
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Custom 404 error handler

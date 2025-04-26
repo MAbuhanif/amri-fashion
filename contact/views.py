@@ -84,7 +84,9 @@ class ContactUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return reverse('contact-update', kwargs={'pk': self.object.pk})
 
 
-class ContactDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+class ContactDeleteView(
+    LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView
+):
     """ View to delete contact messages """
     model = Contact
     success_url = reverse_lazy('contact-list')
