@@ -37,13 +37,6 @@
                             {% include "bag/remove-button.html" %}
                         </span>
                     </div>
-
-                    <div class="col-12 col-sm-6">
-                        {% include "bag/bag-total.html" %}
-                    </div>
-                    <div class="col-12 col-sm-6 ">
-                        {% include "bag/checkout-buttons.html" %}
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -94,16 +87,16 @@
                     </tfoot>
                 </table>
             </div>
+            {% else %}
+            <!-- Empty Bag Message -->
+            <div class="text-center">
+                <p class="lead mb-5">Your bag is empty.</p>
+                <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-0 btn-lg">
+                    <i class="fas fa-chevron-left"></i> Keep Shopping
+                </a>
+            </div>
+            {% endif %}
         </div>
-        {% else %}
-        <!-- Empty Bag Message -->
-        <div class="text-center">
-            <p class="lead mb-5">Your bag is empty.</p>
-            <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-0 btn-lg">
-                <i class="fas fa-chevron-left"></i> Keep Shopping
-            </a>
-        </div>
-        {% endif %}
     </div>
 </div>
 {% endblock %}
