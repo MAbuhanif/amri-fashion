@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /admin/
+Sitemap: https://amri-fashion-aa5dd1ef8dac.herokuapp.com/sitemap.xml
