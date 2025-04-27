@@ -268,104 +268,104 @@ All user stories can be found in a linked GitHub project [here](https://github.c
 
 **Products Page**
 
-    - Products page. Displays the site products available for the user to purchase. Displays images of products and their essential information including title, description, price, category & level. products are displayed in a pleasing responsive grid layout, making it easy for a user to browse the products. 
+- Products page. Displays the site products available for the user to purchase. Displays images of products and their essential information including title, description, price, category & level. products are displayed in a pleasing responsive grid layout, making it easy for a user to browse the products. 
 
 ![screenshot](documentation/site-pages/all-products-page.png)
 
 - **About Page**
 
-    - About page. Gives users essential information about Amri Fashion Website.  
+- About page. Gives users essential information about Amri Fashion Website.  
 
 ![screenshot](documentation/site-pages/about-page.png)
 
 - **FAQ Page**
 
-    - FAQ Page. Displays the most frequently asked questions about the site. Lets users know essential information and quells worries that they may have about the site and its products. accordion serve to make the information engaging and clean.
+- FAQ Page. Displays the most frequently asked questions about the site. Lets users know essential information and quells worries that they may have about the site and its products. accordion serve to make the information engaging and clean.
 
 ![screenshot](documentation/site-pages/FAQs-page.png)
 
 - **Contact Page**
 
-    - Contact Page. Users can contact the site owner using the contact form. If the user is logged in, their email is pre-filled in the email input field. Users can choose from a selection of subjects and leave their message via the text box. 
+- Contact Page. Users can contact the site owner using the contact form. If the user is logged in, their email is pre-filled in the email input field. Users can choose from a selection of subjects and leave their message via the text box. 
 
 ![screenshot](documentation/site-pages/contact-page.png)
 
 - **Contact Success Page**
 
-    - Contact Success Page. Users see this page after sending a contact message via the contact page. This page serves to confirm to the user that their message has been sent successfully. A short message informs the user that their contact message has been received, and that one of the team will respond as soon as possible.
+- Contact Success Page. Users see this page after sending a contact message via the contact page. This page serves to confirm to the user that their message has been sent successfully. A short message informs the user that their contact message has been received, and that one of the team will respond as soon as possible.
 
 ![screenshot](documentation/site-pages/contact-success-page.png)
 
 - **Contact Requests Page - Admin Only**
 
-    - Contact Requests Page. Admins can see a list of all of the contact messages sent by users. Messages are displayed in an easy-to-read table, with all of the salient information presented. Messages are automatically sorted with those messages which have not been responded to at the top of the list, with the oldest (the message which has gone unanswered the longest) at the top. Admins can click on the view details links to see the full contact messages, as well as respond to the message.
+- Contact Requests Page. Admins can see a list of all of the contact messages sent by users. Messages are displayed in an easy-to-read table, with all of the salient information presented. Messages are automatically sorted with those messages which have not been responded to at the top of the list, with the oldest (the message which has gone unanswered the longest) at the top. Admins can click on the view details links to see the full contact messages, as well as respond to the message.
 
 ![screenshot](documentation/site-pages/contact-requests-page.png)
 
 - **Contact Details Page - Admin Only**
 
-    - Contact Details Page. Admins can see details of a contact message left by the user. All of the contact message's information can be seen, including email, name, subject, message, and whether this contact message has been respond to. Contact messages can be responded to or deleted via the large buttons at the bottom of the page. A link navigates back to the contact requests page.
+- Contact Details Page. Admins can see details of a contact message left by the user. All of the contact message's information can be seen, including email, name, subject, message, and whether this contact message has been respond to. Contact messages can be responded to or deleted via the large buttons at the bottom of the page. A link navigates back to the contact requests page.
 
 ![screenshot](documentation/site-pages/contact-detail-page.png)
 
 - **Contact Delete Page - Delete - Admin Only**
 
-    - Contact Message Delete Page. An admin sees this page after clicking the delete message button on the Contact Details Page. This page double checks that deletion of the contact message is the intended course of action and allows an admin to either confirm the action or return to the contact message's detail page.
+- Contact Message Delete Page. An admin sees this page after clicking the delete message button on the Contact Details Page. This page double checks that deletion of the contact message is the intended course of action and allows an admin to either confirm the action or return to the contact message's detail page.
 
 ![screenshot](documentation/site-pages/contact-delete-page.png)
 
 - **Signup Page**
 
-    - Signup Page. Displays a signup form that new users can use to register an account on the site. Simple input fields for email, username and password make it easy for users to sign up for an account.
+- Signup Page. Displays a signup form that new users can use to register an account on the site. Simple input fields for email, username and password make it easy for users to sign up for an account.
 
 ![screenshot](documentation/site-pages/sign-up-page.png)
 
 - **Login Page**
 
-    - Login Page. Displays a login form that existing users can use to log in to the site. Two simple input fields for username and password make it easy for users to log in to their account. 
+- Login Page. Displays a login form that existing users can use to log in to the site. Two simple input fields for username and password make it easy for users to log in to their account. 
 
 ![screenshot](documentation/site-pages/log-in-page.png)
 
 
 - **Profile Page**
 
-    - Profile page. Displays a user's profile information. Lets a user see their relevant profile information in a clean and simple way, and contains an update form that users can use to update their profile information. Users can also see their order history, with full details of their order as well as links to see past order confirmations.
+- Profile page. Displays a user's profile information. Lets a user see their relevant profile information in a clean and simple way, and contains an update form that users can use to update their profile information. Users can also see their order history, with full details of their order as well as links to see past order confirmations.
 
 ![screenshot](documentation/site-pages/profile-page.png)
 
 - **Shopping bag Page**
 
-    - Shopping bag page. Displays all items currently in the user's shopping bag. Users get a message if their basket is empty, otherwise they will see a list of products that they have selected with a button to navigate to the products page, and another to navigate to the checkout page.
+- Shopping bag page. Displays all items currently in the user's shopping bag. Users get a message if their basket is empty, otherwise they will see a list of products that they have selected with a button to navigate to the products page, and another to navigate to the checkout page.
 
 ![screenshot](documentation/site-pages/shopping-bag-page.png)
 
 - **Checkout Page**
 
-    - Checkout page. Displays an order summary of the items that are being prepared for purchase with accompanying item details. Displays a total cost of the order to the user. The user also sees a form to fill in their personal details. For logged in users, these details will be pre-filled if the user has provided that information in the past.
+- Checkout page. Displays an order summary of the items that are being prepared for purchase with accompanying item details. Displays a total cost of the order to the user. The user also sees a form to fill in their personal details. For logged in users, these details will be pre-filled if the user has provided that information in the past.
 
 ![screenshot](documentation/site-pages/checkout-page.png)
 
 - **Checkout Success Page**
 
-    - Checkout Success Page. Displays a thank you message to the user, as well as a message describing how to access their purchased products. Also displays an order summary with all the relevant information, including a unique order number.
+- Checkout Success Page. Displays a thank you message to the user, as well as a message describing how to access their purchased products. Also displays an order summary with all the relevant information, including a unique order number.
 
 ![screenshot](documentation/site-pages/checkout-success-page.png)
 
 - **Add Product Page - Admin Only**
 
-    - Add Product Page. Admins can use this form to add new products to the site. User-friendly form inputs allow product objects to be created simply and quickly.
+- Add Product Page. Admins can use this form to add new products to the site. User-friendly form inputs allow product objects to be created simply and quickly.
 
 ![screenshot](documentation/site-pages/add-product-page.png)
 
 - **Edit Product Page - Admin Only**
 
-    - Edit Product Page. Admins can use this form to add edit products to the site. User-friendly form inputs allow product objects to be edited simply and quickly. A message at the top of the page informs the admin which product they are editing.
+- Edit Product Page. Admins can use this form to add edit products to the site. User-friendly form inputs allow product objects to be edited simply and quickly. A message at the top of the page informs the admin which product they are editing.
 
 ![screenshot](documentation/site-pages/edit-product-page.png)
 
 - **Custom Error Pages**
 
-    - 404 Custom error handler page provide a more user-friendly error page and includes an informative message and button to return home to the site. 
+- 404 Custom error handler page provide a more user-friendly error page and includes an informative message and button to return home to the site. 
 
 ![screenshot](documentation/site-pages/404-page.png)
 
