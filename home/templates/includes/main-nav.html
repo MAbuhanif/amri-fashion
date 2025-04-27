@@ -1,4 +1,4 @@
-<div class="collapse navbar-collapse" id="main-nav">
+<div class="collapse navbar-collapse">
     <ul class="navbar-nav mx-auto">
         <!-- All Products Dropdown -->
         <li class="nav-item dropdown">
@@ -31,10 +31,10 @@
                 Special Offers
             </a>
             <ul class="dropdown-menu border-0 shadow" aria-labelledby="specials-link">
-                <a href="{% url 'products' %}?category=new_arrivals" class="dropdown-item">New Arrivals</a>
-                <a href="{% url 'products' %}?category=deals" class="dropdown-item">Deals</a>
-                <a href="{% url 'products' %}?category=clearance" class="dropdown-item">Clearance</a>
-                <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="dropdown-item">All Specials</a>
+                <li><a href="{% url 'products' %}?category=new_arrivals" class="dropdown-item">New Arrivals</a></li>
+                <li><a href="{% url 'products' %}?category=deals" class="dropdown-item">Deals</a></li>
+                <li><a href="{% url 'products' %}?category=clearance" class="dropdown-item">Clearance</a></li>
+                <li><a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="dropdown-item">All Specials</a></li>
             </ul>
         </li>
         <!-- Contact Us and FAQs buttons -->
