@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import handler404
+from django.conf.urls import handler404
+from django.conf.urls import handler500
 
 from django.contrib.sitemaps.views import sitemap
 from products.sitemaps import StaticSitemap, ProductSitemap
@@ -30,6 +31,10 @@ sitemaps = {
     'static': StaticSitemap,
     'products': ProductSitemap,
 }
+
+# Custom 404 error handler
+handler404 = 'amri_fashion.views.handler404'
+handler500 = 'amri_fashion.views.handler500'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -61,5 +66,4 @@ urlpatterns = [
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# Custom 404 error handler
-handler404 = 'amri_fashion.views.handler404'
+

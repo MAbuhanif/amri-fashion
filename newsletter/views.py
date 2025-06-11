@@ -55,8 +55,6 @@ class MailingListCreateView(CreateView):
         messages.info(
             self.request,
             "Thanks for subscribing to our newsletter!"
-            " Be on the lookout for exciting news from"
-            " Web Piano Academy!"
             )
         self._send_confirmation_email()
         return super().form_valid(form)

@@ -1,0 +1,33 @@
+<!-- 500 server error -->
+{% extends "base.html" %}
+
+{% block title %}Server Error{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-danger">500 Internal Server Error</h1>
+            <p>Sorry, something went wrong on our end. Please try again later.</p>
+            <a href="{% url 'products' %}" class="btn btn-primary">Return to Products</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    /* Optional: Add any custom styles for the 500 error page */
+    .text-danger {
+        color: #dc3545;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+</style>
+{% endblock %}
