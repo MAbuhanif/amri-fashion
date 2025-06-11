@@ -1,6 +1,12 @@
 # Testing
 
 Return back to the [README.md](README.md) file.
+### Manual Testing
+- Add Product: Tested by filling form and checking product list.
+- Edit Product: Changed product name and confirmed change.
+- Delete Product: Deleted product and confirmed it’s removed.
+- Add to Cart: Added product to bag, adjusted quantity, removed.
+- Checkout: Submitted order and verified receipt message.
 
 
 ## Code Validation
