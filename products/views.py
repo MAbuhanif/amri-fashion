@@ -71,7 +71,7 @@ def all_products(request):
         'page_obj': page_obj
     })
 
-
+# product detail view
 def product_detail(request, product_id):
     """ A view to show a single product detail page """
     product = get_object_or_404(Product, pk=product_id)
@@ -88,9 +88,9 @@ def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[form.instance.id]))
+            product = form.save()
+            messages.success(request, 'Product added successfully!')
+            return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(
                 request,
@@ -117,8 +117,8 @@ def edit_product(request, product_id):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Successfully updated product!')
+            product = form.save()
+            messages.success(request, 'Product updated successfully!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(
