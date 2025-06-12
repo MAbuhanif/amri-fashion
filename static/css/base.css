@@ -1,14 +1,19 @@
 /* General Styles */
-html {
+html, body {
     height: 100%;
+    min-height: 100vh;
 }
 
 body {
-    height: 100vh;
-    color: #555;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
+}
+main.flex-fill {
+    flex: 1 0 auto;
 }
 
 /* Icon Styling */
@@ -33,33 +38,37 @@ body {
 .shop-now-button{
     background: black;
     color: white;
-    min-width: 260px;
+    min-width: 200px !important;
 }
 
-.btn-black {
-    background: black;
-    color: white;
-}
 
 .shop-now-button:hover,
 .shop-now-button:active,
-.shop-now-button:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
-    background: #222;
+.shop-now-button:focus {
     color: white;
-}
-
-.text-black {
-    color: #000 !important;
 }
 
 .border-black {
     border: 1px solid black !important;
 }
+header {
+    flex-shrink: 0;
+}
+.header-spacer {
+    width: 100%;
+    height: 55.6px;
+}
+footer {
+    flex-shrink: 0;
+}
+
 
 /* Media Queries */
+@media (min-width: 768px) {
+    .header-spacer {
+      height: 118.04px;
+    }
+  }
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {

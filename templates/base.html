@@ -39,12 +39,12 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header class="container-fluid fixed-top mx-auto px-4 shadow-sm">
-        <div id="topnav" class="row pt-lg-4 d-none bg-white d-lg-flex">
+    <header class="container-fluid fixed-top mx-auto px-4 bg-secondary text-white z-3 ">
+        <div id="topnav" class="row pt-lg-4 d-none d-lg-flex">
             <!-- Logo Section -->
             <div class="col-12 col-lg-4 my-auto py-lg-0 text-center text-lg-start">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-dark my-0"><strong>Amri</strong> Fashion</h2>
+                    <h2 class="logo-font my-0"><strong>Amri</strong> Fashion</h2>
                 </a>
             </div>
 
@@ -70,7 +70,7 @@
                 <ul class="list-inline list-unstyled text-center text-lg-end my-0">
                     <!-- User Dropdown -->
                     <li class="list-inline-item dropdown me-3">
-                        <a class="text-black nav-link dropdown-toggle" href="#" id="user-options" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="text-white nav-link dropdown-toggle" href="#" id="user-options" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user fa-lg"></i>
                         </a>
                         <ul class="dropdown-menu border-0 shadow" aria-labelledby="user-options">
@@ -90,7 +90,7 @@
 
                     <!-- Bag Preview -->
                     <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link dropdown-toggle" href="#" id="bag-preview" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="text-white nav-link dropdown-toggle" href="#" id="bag-preview" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-shopping-bag fa-lg"></i>
                             <span class="badge bg-dark rounded-pill">
                                 {% if product_count %}{{ product_count }}{% else %}0{% endif %}
@@ -128,7 +128,7 @@
         </div>
 
         <!-- Navbar Section -->
-        <div class="row bg-white">
+        <div class="row bg-secondary text-white">
             <nav class="navbar navbar-expand-lg w-100 ">
                 <!-- Navbar Toggler for Mobile -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -139,6 +139,8 @@
             </nav>
         </div>
     </header>
+    <!-- Spacer for fixed header -->
+<div class="header-spacer"></div>
 
     <!-- Messages Section -->
     {% if messages %}
@@ -171,13 +173,16 @@
     </script>
     {% endif %}
 
-    <!-- Main Content Section -->
-    <main class="container pt-5">
-        {% block content %}
-        {% endblock %}
-    </main>
+ 
+   
+
+<!-- Main Content Section -->
+<main class="flex-fill container">
+    {% block content %}
+    {% endblock %}
+</main>
 <!-- Footer -->
-<footer class="container py-5" id="footer-container">
+    <footer class="container py-5 mt-auto" id="footer-container">
         <div class="row">
             <!-- Account Links -->
             <div class="col-12 col-md-4 mb-4">
