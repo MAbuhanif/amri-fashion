@@ -39,8 +39,8 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header class="container-fluid fixed-top px-4 ">
-        <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+    <header class="container-fluid fixed-top mx-auto px-4 shadow-sm">
+        <div id="topnav" class="row pt-lg-4 d-none bg-white d-lg-flex">
             <!-- Logo Section -->
             <div class="col-12 col-lg-4 my-auto py-lg-0 text-center text-lg-start">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
@@ -129,7 +129,7 @@
 
         <!-- Navbar Section -->
         <div class="row bg-white">
-            <nav class="navbar navbar-expand-lg w-100">
+            <nav class="navbar navbar-expand-lg w-100 ">
                 <!-- Navbar Toggler for Mobile -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -172,7 +172,7 @@
     {% endif %}
 
     <!-- Main Content Section -->
-    <main class="container mt-5 pt-5">
+    <main class="container pt-5">
         {% block content %}
         {% endblock %}
     </main>
