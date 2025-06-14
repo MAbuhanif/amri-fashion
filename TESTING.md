@@ -1,13 +1,6 @@
 # Testing
 
 Return back to the [README.md](README.md) file.
-### Manual Testing
-- Add Product: Tested by filling form and checking product list.
-- Edit Product: Changed product name and confirmed change.
-- Delete Product: Deleted product and confirmed it’s removed.
-- Add to Cart: Added product to bag, adjusted quantity, removed.
-- Checkout: Submitted order and verified receipt message.
-
 
 ## Code Validation
 
@@ -140,6 +133,138 @@ On all pages, Lighthouse is flagging a warning 'Issues were logged in the Issues
 | Mobile | Desktop |
 | --- | --- |
 | ![screenshot](documentation/testing/lighthouse-mobile-testing.png) | ![screenshot](documentation/testing/lighthouse-testing.png) |
+
+
+## Manual Testing
+- Add Product: Tested by filling form and checking product list.
+- Edit Product: Changed product name and other details and confirmed change.
+- Delete Product: Deleted product and confirmed it’s removed.
+- Add to Cart: Added product to bag, adjusted quantity, removed.
+- Checkout: Submitted order and verified receipt message.
+
+### Detailed Manual Testing
+
+Defensive programming was manually tested with the below user acceptance testing:
+
+| Page | User Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
+| Nav links | | | | |
+| | Click on site name in navbar | Redirection to Home page | Pass | |
+| | Click on About Us link in navbar | Redirection to About page | Pass | |
+| | Click on Faq link in navbar | Redirection to Faq page | Pass | |
+| | Click on Contact link in navbar | Redirection to Contact page | Pass | |
+| | Click on Search link in navbar | input to search on products page | Pass | |
+| | Click on Register link in navbar | Redirection to Register page | Pass | |
+| | Click on Login link in navbar | Redirection to Login page | Pass | |
+| | Click on Bag link in navbar | Redirection to Bag page | Pass | |
+| | Click on My Account - My Profile link in navbar | Redirection to User Profile page | Pass | |
+| | Click on My Account - Logout link in navbar | Redirection to Logout page | Pass | |
+| Footer | | | | |
+| | Click on My Profile link in footer | Redirection to User Profile page | Pass | |
+| | Click on Logout link in footer | Redirection to Logout page | Pass | |
+| | Click on 'Subscribe Now' button in footer | Redir to Newsletter Subscription page | Pass | |
+| Register | | | | |
+| | Enter valid email address (twice) | Field will only accept email address format | Pass | |
+| | Enter valid password (twice) | Field will only accept password format | Pass | |
+| | Click on Sign Up button | Redirects user to blank Login page | Pass |
+| | Click on Back To Login button | Redirects user to Login page | Pass |
+| Log In | | | | |
+| | Enter valid username/email | Field will accept username or email format | Pass | |
+| | Enter valid password | Field will only accept password format | Pass | |
+| | Click Login button | Log user in, Redirects to home page | Pass | |
+| Log Out | | | | |
+| | Click Logout button | Logs out user, Redirects user to home page | Pass |
+| Profile | | | | |
+| | Click on the Update Information button | Inputted information is saved | Pass | |
+| | Click on Order History links | Redirects to user order confirmation | Pass | |
+| Products | | | | |
+| | Click on products image | Redirect to clicked Product details page | Pass | |
+| | Click on product title | Redirect to clicked product details page | Pass | |
+| | Click on sorting dropdown options | Sort products by selected criteria | Pass | |
+| products - Admin Only| | | | |
+| | Click on an edit button | Redirect to edit product page for that product | Pass | |
+| | Click on a delete button | Trigger delete confirmation modal | Pass | |
+| | Delete confirmation modal - 'yes, delete' button | Delete the product | Pass | |
+| | Delete confirmation modal - 'no, go back' button | Close the modal | Pass | |
+| Product Details | | | | |
+| | Click on product image | Load full image | Pass | |
+| | Click on 'Back To Our products' button | Redirect to products page | Pass | |
+| | Click on 'Add To bag' button | Adds product to bag, bag message displayed | Pass | |
+| Product Details - Admin Only | | | | |
+| | Click on Edit button | Redirect to edit product page for that product | Pass | |
+| | Click on Delete button | Trigger delete confirmation modal | Pass | |
+| | Delete confirmation modal - 'yes, delete' button | Delete the product | Pass | |
+| | Delete confirmation modal - 'no, go back' button | Close the modal | Pass | |
+| FAQ | | | | |
+| | Click on question | Dropdown with answer appears | Pass | |
+| | Click on open question | Dropdown with answer disappears | Pass | |
+| Contact | | | | |
+| | Email input | Auto-fills if user is logged in | Pass | |
+| | Email input | Required, accepts only email format | Pass | |
+| | Name input | Required | Pass | |
+| | Subject input | Required, user given a list of options | Pass | |
+| | Message input | Required, Max characters = 1024 | Pass | |
+| | Click on 'Send' button | Posts form if valid, redirects to contact success page | Pass | |
+| bag | | | | |
+| | Click on 'Remove This Item' link | Remove item from bag | Pass | |
+| | Click on 'Back To products' button | Redirect to products page | Pass | |
+| | Click on 'Secure Checkout' button | Redirect to Checkout page | Pass | |
+| Checkout | | | | |
+| | Full Name Input | Required | Pass | |
+| | Email Input | Required, autofill if saved | Pass | |
+| | Phone Number Input | Required, autofill if saved | Pass | |
+| | Street Address 1 Input | Required, autofill if saved | Pass | |
+| | Street Address 2 Input | Not required, autofill if saved | Pass | |
+| | Town Or City Input | Required, autofill if saved | Pass | |
+| | County Input | Not required, autofill if saved | Pass | |
+| | Postal Code Input | Not required, autofill if saved | Pass | |
+| | Country Input | Required, autofill if saved, select from options | Pass | |
+| | Stripe Card Details | Required, validates on input | Pass | |
+| | Hover over Address Details tooltip icon | Displays tooltip | Pass | |
+| | Check 'save delivery info.' box | Saves information to user profile | Pass | |
+| | Click product image in order summary | Redirect to the product details page | Pass | |
+| | Click on 'Adjust bag' button | Redirect to bag page | Pass | |
+| | Click on 'Complete Order' button | Complete Checkout with given information, redirect to order confirmation 
+
+
+
+## Automated Testing
+
+ - I have conducted a series of automated tests on my application.
+ - I fully acknowledge and understand that, in a real-world scenario, an extensive set of additional tests would be more comprehensive.
+
+### Python (Unit Testing)
+
+- I have used Django's built-in unit testing framework to test the application functionality.
+- In order to run the tests, I ran the following command in the terminal each time:
+
+`python manage.py test name-of-app`
+
+To create the coverage report, I would then run the following commands:
+
+`coverage run --source=name-of-app manage.py test`
+
+`coverage report`
+
+To see the HTML version of the reports, and find out whether some pieces of code were missing, I ran the following commands:
+
+`coverage html`
+
+`python -m http.server`
+
+Below are the results from the various apps on my application that I've tested:
+
+| App | File | Coverage | Screenshot |
+| --- | --- | --- | --- |
+| bag | tests.py | 74% | ![screenshot](documentation/coverage-testing/bag-test.png) |
+| checkout | tests.py | 70% | ![screenshot](documentation/coverage-testing/checkout-test.png) |
+| contact | tests.py | 96% | ![screenshot](documentation/coverage-testing/contact-test.png) |
+| faq | tests.py | 98% | ![screenshot](documentation/coverage-testing/faq-test.png) |
+| home | tests.py | 100% | ![screenshot](documentation/coverage-testing/home-test.png) |
+| newsletter | tests.py | 98% | ![screenshot](documentation/coverage-testing/newsletter-test.png) |
+| products | tests.py | 93% | ![screenshot](documentation/coverage-testing/products-test.png) |
+| profiles | tests.py | 80% | ![screenshot](documentation/coverage-testing/profile-test.png) |
+
 
 
 
