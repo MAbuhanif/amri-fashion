@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container-fluid bg-light py-5 text-center">
-    <h1 class="display-4 logo-font">{{ product.name }}</h1>
+<div class="container-fluid bg-light pt-5 text-center">
+    <h1 class="display-4 logo-font pt-2">{{ product.name }}</h1>
     <p class="text-muted">Discover more about this product</p>
 </div>
 {% endblock %}
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Product Details Section -->
-        <div class="col-12 col-md-6 col-lg-5">
+        <div class="col-12 col-md-6 col-lg-5 pt-3">
             <div class="product-details-container mb-5 mt-md-5">
                 <h2 class="mb-3">{{ product.name }}</h2>
                 <p class="lead fw-bold text-success">${{ product.price }}</p>
@@ -47,7 +47,7 @@
                 <!-- Admin Options -->
                 {% if user.is_superuser %}
                     <div class="mt-2">
-                        <a href="{% url 'edit_product' product.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
+                        <a href="{% url 'edit_product' product.id %}" class="btn btn-outline-secondary btn-sm">Edit</a>
                         <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
                     </div>
                 {% endif %}
