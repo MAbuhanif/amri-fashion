@@ -39,7 +39,7 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header class="container-fluid fixed-top mx-auto px-4 bg-secondary text-white z-3 ">
+    <header class="container-fluid fixed-top mx-auto px-4 bg-secondary text-white">
         <div id="topnav" class="row pt-lg-4 d-none d-lg-flex">
             <!-- Logo Section -->
             <div class="col-12 col-lg-4 my-auto py-lg-0 text-center text-lg-start">
@@ -139,8 +139,6 @@
             </nav>
         </div>
     </header>
-    <!-- Spacer for fixed header -->
-<div class="header-spacer"></div>
 
     <!-- Messages Section -->
     {% if messages %}
@@ -172,15 +170,13 @@
         });
     </script>
     {% endif %}
-
- 
-   
-
-<!-- Main Content Section -->
-<main class="flex-fill container">
+    <!-- Main Content -->
+    {% block page_header %}
+    {% endblock %}
+    
     {% block content %}
     {% endblock %}
-</main>
+
 <!-- Footer -->
     <footer class="container py-5 mt-auto" id="footer-container">
         <div class="row">
@@ -212,7 +208,7 @@
                 <p class="text-muted">Get the latest updates, exclusive deals, and more!</p>
                 <form>
                     <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                        <a class="btn btn-dark rounded-lg text-uppercase" id="mailing-list-button" href="{% url 'mailing-list-subscribe' %}">
+                        <a class="btn bg-secondary text-white rounded-lg text-uppercase" id="mailing-list-button" href="{% url 'mailing-list-subscribe' %}">
                             Subscribe Now
                         </a>
                     </div>
