@@ -29,8 +29,11 @@ class Product(models.Model):
         from django.core.exceptions import ValidationError
         if self.price is not None and self.price <= 0:
             raise ValidationError({'price': 'Price must be a positive number.'})
-        if self.rating is not None and self.rating < 0:
-            raise ValidationError({'rating': 'Rating must be zero or a positive number.'})
+        if self.rating is not None:
+            if self.rating < 0:
+                raise ValidationError({'rating': 'Rating must be zero or a positive number.'})
+            if self.rating > 5:
+                raise ValidationError({'rating': 'Rating cannot exceed 5.'})
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

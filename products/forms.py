@@ -25,6 +25,9 @@ class ProductForm(forms.ModelForm):
 
     def clean_rating(self):
         rating = self.cleaned_data.get('rating')
-        if rating is not None and rating < 0:
-            raise forms.ValidationError('Rating must be zero or a positive number.')
+        if rating is not None:
+            if rating < 0:
+                raise forms.ValidationError('Rating must be zero or a positive number.')
+            if rating > 5:
+                raise forms.ValidationError('Rating cannot exceed 5.')
         return rating
