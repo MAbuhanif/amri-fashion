@@ -29,7 +29,7 @@ class TestUserProfile(TestCase):
             password=password,
             first_name=first_name,
             last_name=last_name
-            )
+        )
 
         user1.save()
 
@@ -83,7 +83,7 @@ class ProfilesViewTestCase(TestCase):
             password=password,
             first_name=first_name,
             last_name=last_name
-            )
+        )
 
         user2.is_staff = True
         user2.is_superuser = True
@@ -121,7 +121,7 @@ class ProfilesViewTestCase(TestCase):
             grand_total=grand_total,
             original_bag=original_bag,
             stripe_pid=stripe_pid
-            )
+        )
 
         order1.save()
 
