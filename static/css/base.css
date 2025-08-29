@@ -1,3 +1,25 @@
+/* Fix for mobile horizontal overflow on checkout success page */
+@media (max-width: 576px) {
+    body, html {
+        overflow-x: hidden;
+    }
+    .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+    }
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .border {
+        overflow-x: auto;
+        word-break: break-word;
+    }
+}
 /* General Styles */
 html{
     height: 100%;
